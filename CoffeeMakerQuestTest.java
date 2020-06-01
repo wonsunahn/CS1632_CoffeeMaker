@@ -8,19 +8,12 @@ import static org.mockito.Mockito.*;
 public class CoffeeMakerQuestTest {
 
 	CoffeeMakerQuest cmq;
-	@Mock
 	Player player;
-	@Mock
-	Room room1;	// Small room
-	@Mock
+	Room room1;	// Magenta room
 	Room room2;	// Funny room
-	@Mock
 	Room room3;	// Refinanced room
-	@Mock
 	Room room4;	// Dumb room
-	@Mock
 	Room room5;	// Bloodthirsty room
-	@Mock
 	Room room6;	// Rough room
 
 	@Before
