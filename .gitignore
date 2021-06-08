@@ -1,3 +1,4 @@
-/CoffeeMakerQuestImpl.class
-/CoffeeMakerQuestTest.class
-/Item.class
+/bin/
+*.md~
+*.un~
+*.swp
