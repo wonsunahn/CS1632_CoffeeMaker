@@ -14,6 +14,8 @@ summer Semester 2021
 
 * DUE: Jun 28, 2021 6:30 PM 
 
+**GitHub Classroom Link:** https://classroom.github.com/g/3ai5Tbi4
+
 ## Deliverable 2
 
 For this assignment, your group will write code and unit tests for an
