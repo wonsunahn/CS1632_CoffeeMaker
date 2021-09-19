@@ -14,7 +14,7 @@ Fall Semester 2021
 
 * DUE: Oct 11, 2021 9:30 AM 
 
-**GitHub Classroom Link:** TBD
+**GitHub Classroom Link:** https://classroom.github.com/g/GiUoFjat
 
 ## Deliverable 2
 
