@@ -53,7 +53,7 @@ IS during grading.  Here is a brief rundown of the classes:
     ```
     When you run it without any modification, you will suffer an exception and crash.  That is of course because you have not completed implementing CoffeeMakerQuestImpl.java!  When you are done implementing, you should get identical behavior as running the original jar file:
     ```
-    jar -jar coffeemaker.jar
+    java -jar coffeemaker.jar
     ```
 
 1. To run the JUnit tests on CoffeeMakerQuestImpl, for Windows:
