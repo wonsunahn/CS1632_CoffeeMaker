@@ -1,18 +1,22 @@
 - [CS 1632 - Software Quality Assurance](#cs-1632---software-quality-assurance)
   * [Deliverable 2](#deliverable-2)
+  * [Running the Program](#running-the-program)
+  * [Running Unit Tests](#running-unit-tests)
   * [Development Methodology](#development-methodology)
   * [Expected Outcome](#expected-outcome)
+  * [Verifying the Test Cases](#verifying-the-test-cases)
   * [Additional Requirements](#additional-requirements)
-  * [Grading](#grading)
-  * [Submission](#submission)
-  * [GradeScope Feedback](#gradescope-feedback)
-  * [Groupwork Plan](#groupwork-plan)
-  * [Resources](#resources)
+- [Grading](#grading)
+- [Submission](#submission)
+- [GradeScope Feedback](#gradescope-feedback)
+- [Groupwork Plan](#groupwork-plan)
+- [Resources](#resources)
 
 # CS 1632 - Software Quality Assurance
-Spring Semester 2022
+Summer Semester 2022
 
-* DUE: Feb 22, 2022 1:00 PM 
+* DUE: July 19, 2022 11:30 AM 
+* Last day of late submission: August 5, 2022 11:30 AM
 
 **GitHub Classroom Link:** TBD
 
@@ -42,39 +46,91 @@ IS during grading.  Here is a brief rundown of the classes:
 * CoffeeMakerQuestImpl.java - an implementation of CoffeeMakerQuest (_modify_)
 * CoffeeMakerQuestTest.java - JUnit test class CoffeeMakerQuest (_modify_)
 
+## Running the Program
 
-1. To run the game you need to invoke the Game class.  For Windows:
-    ```
-    runGame.bat
-    ```
-    For Mac or Linux, try doing:
-    ```
-    bash runGame.sh
-    ```
-    When you run it without any modification, you will suffer an exception and crash.  That is of course because you have not completed implementing CoffeeMakerQuestImpl.java!  When you are done implementing, you should get identical behavior as running the original jar file:
-    ```
-    java -jar coffeemaker.jar
-    ```
+Let's try compiling the game and running using the Maven build system:
 
-1. To run the JUnit tests on CoffeeMakerQuestImpl, for Windows:
-    ```
-    runTest.bat
-    ```
-    For Mac or Linux, try doing:
-    ```
-    bash runTest.sh
-    ```
-    When you run it without any modification, you will get "ALL TESTS PASSED".  But don't get delirious.  That is because all your tests are currently empty.
+```
+mvn compile
+```
 
-1. To run the JUnit tests on CoffeeMakerQuestBuggy (included in the form of
-   the coffeemaker-buggy.jar file), for Windows:
-    ```
-    runTestBuggy.bat
-    ```
-    For Mac or Linux, try doing:
-    ```
-    bash runTestBuggy.sh
-    ```
+```
+mvn exec:java -Dexec.mainClass=edu.pitt.cs.Game
+```
+
+When you run it as-is, you will suffer an exception and crash:
+
+```
+...
+Coffee Maker Quest 1.0
+
+[WARNING]
+java.lang.NullPointerException
+    at edu.pitt.cs.Game.main (Game.java:32)
+    at org.codehaus.mojo.exec.ExecJavaMojo$1.run (ExecJavaMojo.java:254)
+    at java.lang.Thread.run (Thread.java:748)
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.803 s
+[INFO] Finished at: 2022-07-07T02:39:01-04:00
+[INFO] ------------------------------------------------------------------------
+...
+```
+
+That is because you have not completed implementing CoffeeMakerQuestImpl.java.
+When you are done implementing, you should get identical behavior as running
+the canonical jar file:
+
+```
+java -jar coffeemaker.jar
+```
+
+## Running Unit Tests
+
+As in the Exercise, invoke the Maven 'test' phase:
+
+```
+mvn test
+```
+
+You should get output that looks like this:
+
+```
+...
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running edu.pitt.cs.CoffeeMakerQuestTest
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.121 sec
+
+Results :
+
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO]
+[INFO] --- jacoco-maven-plugin:0.8.4:report (post-unit-test) @ coffeemaker ---
+[INFO] Loading execution data file C:\Users\mrabb\Documents\github\cs1632\CS1632_Summer2022\deliverables\2\target\jacoco.exec
+[INFO] Analyzed bundle 'coffeemaker' with 7 classes
+[INFO]
+[INFO] --- jacoco-maven-plugin:0.8.4:check (check-unit-test) @ coffeemaker ---
+[INFO] Loading execution data file C:\Users\mrabb\Documents\github\cs1632\CS1632_Summer2022\deliverables\2\target\jacoco.exec
+[INFO] Analyzed bundle 'coffeemaker' with 7 classes
+[WARNING] Rule violated for class edu.pitt.cs.CoffeeMakerQuestImpl: instructions covered ratio is 0.16, but expected minimum is 0.90
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.236 s
+[INFO] Finished at: 2022-07-07T02:44:37-04:00
+[INFO] ------------------------------------------------------------------------
+...
+```
+
+Again, don't get too excited about all the tests passing --- that is only
+because the test cases are currently empty.  In fact, the test fails in the
+code coverage verification phase because the current coverage is only 16% which
+is way below our target of 90%.  You will have to fill in all the provided test
+cases, and perhaps add a few test cases of your own, to hit 90%.
 
 ## Development Methodology
 
@@ -86,22 +142,101 @@ of adding a feature or refactoring your code, you will know immediately.
 
 ## Expected Outcome
 
-You should see the following output when running runTest.bat (or runTest.sh):
+When all is done, you should see the following output when running 'mvn test':
+
 ```
-ALL TESTS PASSED
+...
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running edu.pitt.cs.CoffeeMakerQuestTest
+Tests run: 24, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.46 sec
+
+Results :
+
+Tests run: 24, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO]
+[INFO] --- jacoco-maven-plugin:0.8.4:report (post-unit-test) @ coffeemaker ---
+[INFO] Loading execution data file C:\Users\mrabb\Documents\github\cs1632\CS1632_CoffeeMaker_Solution\target\jacoco.exec
+[INFO] Analyzed bundle 'coffeemaker' with 7 classes
+[INFO]
+[INFO] --- jacoco-maven-plugin:0.8.4:check (check-unit-test) @ coffeemaker ---
+[INFO] Loading execution data file C:\Users\mrabb\Documents\github\cs1632\CS1632_CoffeeMaker_Solution\target\jacoco.exec
+[INFO] Analyzed bundle 'coffeemaker' with 7 classes
+[INFO] All coverage checks have been met.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.949 s
+[INFO] Finished at: 2022-07-07T02:52:08-04:00
+[INFO] ------------------------------------------------------------------------
+...
 ```
 
-And after running runTestBuggy.bat (or runTestBuggy.sh), you should get output that looks like [runTestBuggy.output.txt](runTestBuggy.output.txt).  If you do, this tells you that you have written your JUnit tests well so that they are able to find the bugs in CoffeeMakerQuestBuggy.  Note that I've commented out the following line at TestRunner.java:30 to make the output less verbose:
+## Verifying the Test Cases
+
+Just like for the exercises, as an extra precaution, we would like to verify
+our test cases against a buggy implementation to make sure that they are able
+to catch defects.
+
+In order to apply your unit tests to CoffeeMakerQuestBuggy, add the following line to
+the beginning of the @Before setUp() method:
+
 ```
-System.out.println(f.getTrace());
+Config.setBuggyCoffeeMakerQuest(true);
 ```
-The above will print a full Java stack trace for every failure.  It is useful when a test fails due to a crash in your program and you want to locate exactly in which source code line the Java exception was thrown.  The defects in this CoffeeMakerQuestBuggy does not involve crashes due to exceptions so I've temporarily commented it out for brevity.
+
+If you run 'mvn test' after having done so, you should be detecting lots of defects:
+
+```
+Results :
+
+Failed tests:   testAddFirstRoom(edu.pitt.cs.CoffeeMakerQuestTest)
+  testAddRoomAtNorthDuplicate(edu.pitt.cs.CoffeeMakerQuestTest)
+  testAddRoomAtNorthUnique(edu.pitt.cs.CoffeeMakerQuestTest): (..)
+  testGetCurrentRoom(edu.pitt.cs.CoffeeMakerQuestTest): expected null, but was:<edu.pitt.cs.Room@1e8823d2>
+  testGetHelpString(edu.pitt.cs.CoffeeMakerQuestTest): java.lang.IllegalArgumentException: object is not an instance of declaring class
+  testGetInstructionsString(edu.pitt.cs.CoffeeMakerQuestTest): expected:< INSTRUCTIONS [(N,S,L,I,D,H) ]> > but was:< INSTRUCTIONS []> >
+  testIsRoomUnique(edu.pitt.cs.CoffeeMakerQuestTest): java.lang.IllegalArgumentException: object is not an instance of declaring class
+  testProcessCommandDLose(edu.pitt.cs.CoffeeMakerQuestTest): expected:<...GAR!(..)
+  testProcessCommandDLoseCoffee(edu.pitt.cs.CoffeeMakerQuestTest): expected:<(..)
+  testProcessCommandDLoseCoffeeCream(edu.pitt.cs.CoffeeMakerQuestTest): expected:<(..)
+  testProcessCommandDLoseCoffeeSugar(edu.pitt.cs.CoffeeMakerQuestTest): expected:<(..)
+  testProcessCommandDLoseCream(edu.pitt.cs.CoffeeMakerQuestTest): expected:<(..)
+  testProcessCommandDLoseCreamSugar(edu.pitt.cs.CoffeeMakerQuestTest): expected:<(..)
+  testProcessCommandDLoseSugar(edu.pitt.cs.CoffeeMakerQuestTest): expected:<(..)
+  testProcessCommandDWin(edu.pitt.cs.CoffeeMakerQuestTest): expected:<...gar.(..)
+  testProcessCommandI(edu.pitt.cs.CoffeeMakerQuestTest): expected:<[YOU HAVE NO COFFEE!(..)
+  testProcessCommandLCream(edu.pitt.cs.CoffeeMakerQuestTest): (..)
+  testProcessCommandLSugar(edu.pitt.cs.CoffeeMakerQuestTest): (..)
+  testProcessCommandN(edu.pitt.cs.CoffeeMakerQuestTest): expected:<Mock for Room, hashCode: 45416784> but was:<Mock for Room, hashCode: 364480205>
+  testProcessCommandS(edu.pitt.cs.CoffeeMakerQuestTest): expected:<Mock for Room, hashCode: 1103505488> but was:<edu.pitt.cs.Room@6b530eb9>
+  testSetCurrentRoom(edu.pitt.cs.CoffeeMakerQuestTest)
+
+Tests run: 24, Failures: 21, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.552 s
+[INFO] Finished at: 2022-07-07T02:57:20-04:00
+[INFO] ------------------------------------------------------------------------
+...
+```
+
+If you don't see all 21 failures, you may want to review the test cases to see which are being too lax.
+
+Again, don't forget to revert your CoffeeMakerQuestTest.java by removing the
+'Config.setBuggyCoffeeMakerQuest(true);' line after you are done!
 
 ## Additional Requirements
 
 * Code coverage of the class CoffeeMakerQuestImpl when the JUnit TestRunner is
-  run should be at an absolute minimum of **90%**.  If coverage falls below that
-number, add more unit tests to CoffeeMakerQuestTest.
+  run should be at an absolute minimum of **90%**.  If coverage falls below
+that number, add more unit tests to CoffeeMakerQuestTest.  View the detailed
+line-by-line Jacoco coverage report for CoffeeMakerQuestImpl to see which lines
+you are missing and come up with test cases that are able to hit those lines.
 
 * For this program, no requirements are given as the requirement is that you
   mimic the output of the given **coffeemaker.jar** file (note that this jar
@@ -145,7 +280,7 @@ variables and methods for this project.  There is less agreement on other
 formatting issues like indentation and line wrapping, but try to maintain a
 uniform convention whatever you choose.
 
-## Grading
+# Grading
 
 * GradeScope autograder: 70% of grade
 * Private method added and tested: 5% of grade
@@ -154,7 +289,7 @@ uniform convention whatever you choose.
 
 Please review the grading_rubric.txt for details.
 
-## Submission
+# Submission
 
 Each group will do one submissions to GradeScope as usual.
 
@@ -174,18 +309,14 @@ difficulties you faced while using JUnit.  On the second page, paste a
 screenshot of code coverage stats **after** having completed the coding.
 Please refer to [Exercise 2](/exercises/2#measuring-code-coverage) on how to
 create the screenshot.  Submit to GradeScope at the **Deliverable 2 Coverage**
-link.  Your screenshot should look like either:
-
-   <img alt="Code Coverage Eclipse" src=code_coverage_eclipse.png width=700>
-   
-   or ...
+link.  Your screenshot should look like this:
 
    <img alt="Code Coverage Jacoco" src=code_coverage_jacoco.png width=700>
 
    Make sure that the coverage of CoffeeMakerQuestImpl is showing and the
 overall coverage is above **90%** as shown above.
 
-## GradeScope Feedback
+# GradeScope Feedback
 
 It is encouraged that you submit to GradeScope early and often.  Please use the
 feedback you get on each submission to improve your code!
@@ -206,13 +337,13 @@ the coffeemaker-buggy.jar file.  Since CoffeeMakerQuestBuggy is buggy, you
 expect the tests to fail this time.  If CoffeeMakerQuestTestSolution fails a
 test but CoffeeMakerQuestTest passes a test (or vice versa), then this indicates a problem.
 
-## Groupwork Plan
+# Groupwork Plan
 
 Just like for Exercise 2, I recommend that you divide the list of methods to
 implement / test into two halves and working on one half each.  Please document
 how you divided the work in your report.
 
-## Resources
+# Resources
 
 These links are the same ones posted at the end of the slides:
 
@@ -230,14 +361,3 @@ Most useful is the sections about verification and stubbing.
 
 * Jacoco User Manual:  
 https://www.jacoco.org/userdoc/index.html
-
-* Jacoco CLI (Command Line Interface) Manual:  
-https://www.jacoco.org/jacoco/trunk/doc/cli.html
-
-* Eclipse IDE
-If you want more information, here is a page put up by a U Chicago professor:  
-http://people.cs.uchicago.edu/~kaharris/10200/tutorials/eclipse/index.html  
-It uses a much earlier version of Eclipse, but other than the outdated UI, the operations are the same.  I looked at several resources and this one was the most concise and to the point.  A more comprehensive manual is at eclipse.org:  
-https://help.eclipse.org/2019-12/index.jsp  
-Look at the "Java development user guide" chapter on the left.
-
