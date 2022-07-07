@@ -1,4 +1,3 @@
 /bin/
-*.md~
-*.un~
-*.swp
+/doc/
+/target/

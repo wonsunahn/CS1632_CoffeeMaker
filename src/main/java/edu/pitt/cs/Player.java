@@ -1,3 +1,5 @@
+package edu.pitt.cs;
+
 class Player {
 	private boolean hasCoffee;
 	private boolean hasCream;

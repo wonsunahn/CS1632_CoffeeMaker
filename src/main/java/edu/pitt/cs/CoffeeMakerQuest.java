@@ -1,3 +1,5 @@
+package edu.pitt.cs;
+
 public interface CoffeeMakerQuest {
 	public static CoffeeMakerQuest createInstance() {
 		if(Config.getBuggyCoffeeMakerQuest()) {

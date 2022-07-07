@@ -1,11 +1,12 @@
+package edu.pitt.cs;
+
 import static org.junit.Assert.*;
 
+import org.junit.Test;
 import org.junit.*;
-import org.junit.runners.MethodSorters;
 import org.mockito.*;
 import static org.mockito.Mockito.*;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CoffeeMakerQuestTest {
 
 	CoffeeMakerQuest cmq;

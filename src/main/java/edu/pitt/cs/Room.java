@@ -1,3 +1,5 @@
+package edu.pitt.cs;
+
 public class Room {
 	private String furnishing;
 	private String adjective;
