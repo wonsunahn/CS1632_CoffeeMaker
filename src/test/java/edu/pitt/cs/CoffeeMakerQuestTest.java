@@ -21,9 +21,11 @@ public class CoffeeMakerQuestTest {
 		Config.setBuggyPlayer(true);
 		Config.setBuggyRoom(true);
 
-		// TODO: 1. Create a mock Player with no items (no coffee, no cream, no sugar) and assign to player.
+		// TODO: 1. Create a mock Player with no items (no coffee, no cream, no sugar)
+		// and assign to player.
 
-		// TODO: 2. Create 6 mock rooms as specified in rooms.config and add to rooms list and assign to rooms.
+		// TODO: 2. Create 6 mock rooms as specified in rooms.config and add to rooms
+		// list and assign to rooms.
 
 		// 3. Create Coffee Maker Quest game using player and rooms, and assign to cmq.
 		cmq = CoffeeMakerQuest.createInstance(player, rooms);
@@ -74,6 +76,35 @@ public class CoffeeMakerQuestTest {
 	 */
 	@Test
 	public void testSetCurrentRoom() {
+		// TODO
+	}
+
+	/**
+	 * Test case for boolean areDoorsPlacedCorrectly() when check succeeds.
+	 * 
+	 * <pre>
+	 * Preconditions: Player, rooms, and cmq have been created.
+	 * Execution steps: Call cmq.areDoorsPlacedCorrectly().
+	 * Postconditions: Return value of cmq.areDoorsPlacedCorrectly() is true.
+	 * </pre>
+	 */
+	@Test
+	public void testAreDoorsPlacedCorrectly() {
+		// TODO
+	}
+
+	/**
+	 * Test case for boolean areDoorsPlacedCorrectly() when check fails.
+	 * 
+	 * <pre>
+	 * Preconditions: Player, rooms, and cmq have been created.
+	 *                rooms.get(3) is modified so that it has no south door.
+	 * Execution steps: Call cmq.areDoorsPlacedCorrectly().
+	 * Postconditions: Return value of cmq.areDoorsPlacedCorrectly() is false.
+	 * </pre>
+	 */
+	@Test
+	public void testAreDoorsPlacedCorrectlyMissingSouthDoor() {
 		// TODO
 	}
 
