@@ -18,7 +18,7 @@ Summer Semester 2022
 * DUE: July 19, 2022 11:30 AM 
 * Last day of late submission: August 5, 2022 11:30 AM
 
-**GitHub Classroom Link:** TBD
+**GitHub Classroom Link:** https://classroom.github.com/a/Vl_kP9Nz
 
 ## Deliverable 2
 
@@ -55,7 +55,7 @@ mvn compile
 ```
 
 ```
-mvn exec:java -Dexec.mainClass=edu.pitt.cs.Game
+mvn exec:java -D"exec.mainClass"="edu.pitt.cs.Game"
 ```
 
 When you run it as-is, you will suffer an exception and crash:
