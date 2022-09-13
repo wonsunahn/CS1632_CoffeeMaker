@@ -17,7 +17,7 @@ Fall Semester 2022
 
 * DUE: October 3, 2022 before start of class
 
-**GitHub Classroom Link:** TBD
+**GitHub Classroom Link:** https://classroom.github.com/a/a3CjQ2DK
 
 ## Deliverable 2
 
@@ -193,13 +193,16 @@ If you run 'mvn test' after having done so, you should be detecting lots of defe
  T E S T S
 -------------------------------------------------------
 Running edu.pitt.cs.CoffeeMakerQuestTest
-Tests run: 23, Failures: 18, Errors: 1, Skipped: 0, Time elapsed: 0.61 sec <<< FAILURE!
+Tests run: 23, Failures: 21, Errors: 1, Skipped: 0, Time elapsed: 0.61 sec <<< FAILURE!
 ...
 Results :
 
-Failed tests:   testGetCurrentRoom(edu.pitt.cs.CoffeeMakerQuestTest): expected same:<Mock for Room, hashCode: 1017792343> was not:<Mock for Room, hashCode: 1774468680>
+Failed tests:   testAreDoorsPlacedCorrectly(edu.pitt.cs.CoffeeMakerQuestTest)
+  testAreDoorsPlacedCorrectlyMissingSouthDoor(edu.pitt.cs.CoffeeMakerQuestTest)
+  testGetCurrentRoom(edu.pitt.cs.CoffeeMakerQuestTest): expected same:<Mock for Room, hashCode: 503144273> was not:<Mock for Room, hashCode: 1009916891>        
   testGetHelpString(edu.pitt.cs.CoffeeMakerQuestTest): java.lang.IllegalArgumentException: object is not an instance of declaring class
   testGetInstructionsString(edu.pitt.cs.CoffeeMakerQuestTest): expected:< INSTRUCTIONS [(N,S,L,I,D,H) ]> > but was:< INSTRUCTIONS []> >
+  testHelpString(edu.pitt.cs.CoffeeMakerQuestTest): expected:<[N - Go north(..)
   testIsRoomUnique(edu.pitt.cs.CoffeeMakerQuestTest): java.lang.IllegalArgumentException: object is not an instance of declaring class
   testProcessCommandDLose(edu.pitt.cs.CoffeeMakerQuestTest): expected:<...GAR!(..)
   testProcessCommandDLoseCoffee(edu.pitt.cs.CoffeeMakerQuestTest): expected:<(..)
@@ -213,13 +216,13 @@ Failed tests:   testGetCurrentRoom(edu.pitt.cs.CoffeeMakerQuestTest): expected s
   testProcessCommandLCoffee(edu.pitt.cs.CoffeeMakerQuestTest): expected:<[There might be something here...(..)
   testProcessCommandLCream(edu.pitt.cs.CoffeeMakerQuestTest): expected:<[There might be something here...(..)
   testProcessCommandLNone(edu.pitt.cs.CoffeeMakerQuestTest): expected:<[You don't see anything out of the ordinary.](..)
-  testProcessCommandS(edu.pitt.cs.CoffeeMakerQuestTest): expected:<Mock for Room, hashCode: 1132369181> but was:<null>
+  testProcessCommandS(edu.pitt.cs.CoffeeMakerQuestTest): expected:<Mock for Room, hashCode: 254955665> but was:<null>
   testSetCurrentRoom(edu.pitt.cs.CoffeeMakerQuestTest)
 
 Tests in error:
   testProcessCommandLSugar(edu.pitt.cs.CoffeeMakerQuestTest): Index: 6, Size: 6
 
-Tests run: 23, Failures: 18, Errors: 1, Skipped: 0
+Tests run: 23, Failures: 21, Errors: 1, Skipped: 0
 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
