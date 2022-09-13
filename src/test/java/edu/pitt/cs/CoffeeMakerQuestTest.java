@@ -108,6 +108,21 @@ public class CoffeeMakerQuestTest {
 	}
 
 	/**
+	 * Test case for boolean areRoomsUnique() when check fails.
+	 * 
+	 * <pre>
+	 * Preconditions: Player, rooms, and cmq test fixture been created.
+	 *                rooms.get(2) is modified so that its adjective is modified to "Small".
+	 * Execution steps: Call cmq.areDoorsPlacedCorrectly().
+	 * Postconditions: Return value of cmq.areDoorsPlacedCorrectly() is true.
+	 * </pre>
+	 */
+	@Test
+	public void testAreRoomsUniqueDuplicateAdjective() {
+		// TODO
+	}
+
+	/**
 	 * Test case for String processCommand("I").
 	 * 
 	 * <pre>
