@@ -13,12 +13,11 @@
 - [Resources](#resources)
 
 # CS 1632 - Software Quality Assurance
-Summer Semester 2022
+Fall Semester 2022
 
-* DUE: July 19, 2022 11:30 AM 
-* Last day of late submission: August 5, 2022 11:30 AM
+* DUE: October 3, 2022 before start of class
 
-**GitHub Classroom Link:** https://classroom.github.com/a/Vl_kP9Nz
+**GitHub Classroom Link:** TBD
 
 ## Deliverable 2
 
@@ -31,20 +30,22 @@ Maker Quest game we tested for Deliverable 1, but with defects removed.
 
 Some of the work has already been done for you.  Classes such as
 CoffeeMakerQuest.java, Config.java, Game.java, Player.java, Room.java, and
-TestRunner.java are already complete.  You need only modify
-CoffeeMakerQuestImpl.java and CoffeeMakerQuestTest.java.  As in the
-exercise, the places where you need to modify code are marked by the // TODO
-comments.  DO NOT TOUCH the already complete classes as they will be used AS
-IS during grading.  Here is a brief rundown of the classes:
+RoomsJSONParser.java are already complete.  You need only modify
+CoffeeMakerQuestImpl.java and CoffeeMakerQuestTest.java.  As in the exercise,
+the places where you need to modify code are marked by the // TODO comments.
+DO NOT TOUCH the already complete classes as they will be used AS IS during
+grading.  Here is a brief rundown of the files:
 
+* CoffeeMakerQuestImpl.java - an implementation of CoffeeMakerQuest (**modify**)
+* CoffeeMakerQuestTest.java - JUnit test class CoffeeMakerQuest (**modify**)
 * CoffeeMakerQuest.java - the interface for the CoffeeMakerQuest game engine
-* Config.java - allows configuration of bug injection into various classes
+* Config.java - allows configuration of bug injection into various classes (for grading purposes mostly)
 * Game.java - contains the main method; generates rooms and runs the game using the CoffeeMakerQuest engine
 * Player.java - player object with inventory information
 * Room.java - room object with furnishings and items
-* TestRunner.java - the runner for the JUnit test class CoffeeMakerQuestTest
-* CoffeeMakerQuestImpl.java - an implementation of CoffeeMakerQuest (_modify_)
-* CoffeeMakerQuestTest.java - JUnit test class CoffeeMakerQuest (_modify_)
+* RoomsJSONParser.java - uses JSON parser to read in rooms.config file
+* coffeemaker.jar - reference implementation
+* rooms.config - the rooms map configuration file
 
 ## Running the Program
 
@@ -55,32 +56,28 @@ mvn compile
 ```
 
 ```
-mvn exec:java -D"exec.mainClass"="edu.pitt.cs.Game"
+mvn exec:java 
 ```
 
-When you run it as-is, you will suffer an exception and crash:
+When you run it as-is, you will get the following output:
 
 ```
 ...
-Coffee Maker Quest 1.0
-
-[WARNING]
-java.lang.NullPointerException
-    at edu.pitt.cs.Game.main (Game.java:32)
-    at org.codehaus.mojo.exec.ExecJavaMojo$1.run (ExecJavaMojo.java:254)
-    at java.lang.Thread.run (Thread.java:748)
+Please make sure that the rooms.config file has doors at all interconnected rooms.
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
+[INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  0.803 s
-[INFO] Finished at: 2022-07-07T02:39:01-04:00
+[INFO] Total time:  1.593 s
+[INFO] Finished at: 2022-09-13T16:33:14-04:00
 [INFO] ------------------------------------------------------------------------
-...
 ```
 
-That is because you have not completed implementing CoffeeMakerQuestImpl.java.
-When you are done implementing, you should get identical behavior as running
-the canonical jar file:
+The game fails to start up properly because it fails a sanity check of the
+rooms.config that checks whether all rooms have doors to neighboring rooms.
+And that is not happening not because rooms.config really has a configuration
+problem, but because your CoffeeMakerQuestImpl is yet incomplete.  When you are
+done implementing, you should get identical behavior as running the reference
+jar file:
 
 ```
 java -jar coffeemaker.jar
@@ -102,33 +99,33 @@ You should get output that looks like this:
  T E S T S
 -------------------------------------------------------
 Running edu.pitt.cs.CoffeeMakerQuestTest
-Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.121 sec
+Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.112 sec
 
 Results :
 
-Tests run: 12, Failures: 0, Errors: 0, Skipped: 0
+Tests run: 11, Failures: 0, Errors: 0, Skipped: 0
 
 [INFO]
 [INFO] --- jacoco-maven-plugin:0.8.4:report (post-unit-test) @ coffeemaker ---
-[INFO] Loading execution data file C:\Users\mrabb\Documents\github\cs1632\CS1632_Summer2022\deliverables\2\target\jacoco.exec
-[INFO] Analyzed bundle 'coffeemaker' with 7 classes
+[INFO] Loading execution data file C:\Users\mrabb\Documents\github\cs1632\CS1632_CoffeeMaker\target\jacoco.exec
+[INFO] Analyzed bundle 'coffeemaker' with 9 classes
 [INFO]
 [INFO] --- jacoco-maven-plugin:0.8.4:check (check-unit-test) @ coffeemaker ---
-[INFO] Loading execution data file C:\Users\mrabb\Documents\github\cs1632\CS1632_Summer2022\deliverables\2\target\jacoco.exec
-[INFO] Analyzed bundle 'coffeemaker' with 7 classes
-[WARNING] Rule violated for class edu.pitt.cs.CoffeeMakerQuestImpl: instructions covered ratio is 0.16, but expected minimum is 0.90
+[INFO] Loading execution data file C:\Users\mrabb\Documents\github\cs1632\CS1632_CoffeeMaker\target\jacoco.exec
+[INFO] Analyzed bundle 'coffeemaker' with 9 classes
+[WARNING] Rule violated for class edu.pitt.cs.CoffeeMakerQuestImpl: instructions covered ratio is 0.17, but expected minimum is 0.90
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  3.236 s
-[INFO] Finished at: 2022-07-07T02:44:37-04:00
+[INFO] Total time:  5.144 s
+[INFO] Finished at: 2022-09-13T16:42:54-04:00
 [INFO] ------------------------------------------------------------------------
 ...
 ```
 
-Again, don't get too excited about all the tests passing --- that is only
-because the test cases are currently empty.  In fact, the test fails in the
-code coverage verification phase because the current coverage is only 16% which
+Again, don't get too excited about all the unit tests passing --- that is only
+because the test cases are currently empty.  In fact, the build fails in the
+code coverage verification phase because the current coverage is only 17% which
 is way below our target of 90%.  You will have to fill in all the provided test
 cases, and perhaps add a few test cases of your own, to hit 90%.
 
@@ -136,13 +133,15 @@ cases, and perhaps add a few test cases of your own, to hit 90%.
 
 Like Exercise 2, we will try to apply the Test Driven Development (TDD) model
 here.  Try writing the test case(s) FIRST before writing the code for a
-feature.  This way, you will always have 100% test coverage for the code you
-have written and are writing.  Hence, if you break any part of it in the course
-of adding a feature or refactoring your code, you will know immediately.
+feature.  This way, you will always have test coverage for the code you have
+written and are writing.  Hence, if you break any part of it in the course of
+adding a feature or refactoring your code, you will know immediately.
 
 ## Expected Outcome
 
-When all is done, you should see the following output when running 'mvn test':
+When all is done, you should see something like the following when running 'mvn
+test' (number of tests may vary depending on how many tests are required to
+reach 90% coverage):
 
 ```
 ...
@@ -169,7 +168,7 @@ Tests run: 24, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  3.949 s
-[INFO] Finished at: 2022-07-07T02:52:08-04:00
+[INFO] Finished at: 2022-09-07T02:52:08-04:00
 [INFO] ------------------------------------------------------------------------
 ...
 ```
@@ -190,12 +189,15 @@ Config.setBuggyCoffeeMakerQuest(true);
 If you run 'mvn test' after having done so, you should be detecting lots of defects:
 
 ```
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running edu.pitt.cs.CoffeeMakerQuestTest
+Tests run: 23, Failures: 18, Errors: 1, Skipped: 0, Time elapsed: 0.61 sec <<< FAILURE!
+...
 Results :
 
-Failed tests:   testAddFirstRoom(edu.pitt.cs.CoffeeMakerQuestTest)
-  testAddRoomAtNorthDuplicate(edu.pitt.cs.CoffeeMakerQuestTest)
-  testAddRoomAtNorthUnique(edu.pitt.cs.CoffeeMakerQuestTest): (..)
-  testGetCurrentRoom(edu.pitt.cs.CoffeeMakerQuestTest): expected null, but was:<edu.pitt.cs.Room@1e8823d2>
+Failed tests:   testGetCurrentRoom(edu.pitt.cs.CoffeeMakerQuestTest): expected same:<Mock for Room, hashCode: 1017792343> was not:<Mock for Room, hashCode: 1774468680>
   testGetHelpString(edu.pitt.cs.CoffeeMakerQuestTest): java.lang.IllegalArgumentException: object is not an instance of declaring class
   testGetInstructionsString(edu.pitt.cs.CoffeeMakerQuestTest): expected:< INSTRUCTIONS [(N,S,L,I,D,H) ]> > but was:< INSTRUCTIONS []> >
   testIsRoomUnique(edu.pitt.cs.CoffeeMakerQuestTest): java.lang.IllegalArgumentException: object is not an instance of declaring class
@@ -208,27 +210,34 @@ Failed tests:   testAddFirstRoom(edu.pitt.cs.CoffeeMakerQuestTest)
   testProcessCommandDLoseSugar(edu.pitt.cs.CoffeeMakerQuestTest): expected:<(..)
   testProcessCommandDWin(edu.pitt.cs.CoffeeMakerQuestTest): expected:<...gar.(..)
   testProcessCommandI(edu.pitt.cs.CoffeeMakerQuestTest): expected:<[YOU HAVE NO COFFEE!(..)
-  testProcessCommandLCream(edu.pitt.cs.CoffeeMakerQuestTest): (..)
-  testProcessCommandLSugar(edu.pitt.cs.CoffeeMakerQuestTest): (..)
-  testProcessCommandN(edu.pitt.cs.CoffeeMakerQuestTest): expected:<Mock for Room, hashCode: 45416784> but was:<Mock for Room, hashCode: 364480205>
-  testProcessCommandS(edu.pitt.cs.CoffeeMakerQuestTest): expected:<Mock for Room, hashCode: 1103505488> but was:<edu.pitt.cs.Room@6b530eb9>
+  testProcessCommandLCoffee(edu.pitt.cs.CoffeeMakerQuestTest): expected:<[There might be something here...(..)
+  testProcessCommandLCream(edu.pitt.cs.CoffeeMakerQuestTest): expected:<[There might be something here...(..)
+  testProcessCommandLNone(edu.pitt.cs.CoffeeMakerQuestTest): expected:<[You don't see anything out of the ordinary.](..)
+  testProcessCommandS(edu.pitt.cs.CoffeeMakerQuestTest): expected:<Mock for Room, hashCode: 1132369181> but was:<null>
   testSetCurrentRoom(edu.pitt.cs.CoffeeMakerQuestTest)
 
-Tests run: 24, Failures: 21, Errors: 0, Skipped: 0
+Tests in error:
+  testProcessCommandLSugar(edu.pitt.cs.CoffeeMakerQuestTest): Index: 6, Size: 6
+
+Tests run: 23, Failures: 18, Errors: 1, Skipped: 0
 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  5.552 s
-[INFO] Finished at: 2022-07-07T02:57:20-04:00
+[INFO] Total time:  5.223 s
+[INFO] Finished at: 2022-09-13T16:50:31-04:00
 [INFO] ------------------------------------------------------------------------
 ...
 ```
 
-If you don't see all 21 failures, you may want to review the test cases to see which are being too lax.
+Your list of failures may differ depending on what additional test cases you
+added.  If see your RentACatTest not catching defects in the buggy
+implementation on GradeScope, you can try to see what you may have done wrong
+by experimenting CoffeeMakerQuestBuggy (it is the same exact version used on
+GradeScope).
 
-Again, don't forget to revert your CoffeeMakerQuestTest.java by removing the
-'Config.setBuggyCoffeeMakerQuest(true);' line after you are done!
+**Don't forget to revert your CoffeeMakerQuestTest.java by removing the
+'Config.setBuggyCoffeeMakerQuest(true);' line after you are done!**
 
 ## Additional Requirements
 
@@ -242,7 +251,7 @@ you are missing and come up with test cases that are able to hit those lines.
   mimic the output of the given **coffeemaker.jar** file (note that this jar
 file is slightly different from the version provided to you for Deliverable 1
 as I have fixed most of the bugs!).  If GradeScope gives you a failure because
-your output is different canonical output, it will show you where the
+your output is different from the reference output, it will show you where the
 difference is between brackets [].  In fact, GradeScope itself uses JUnit
 behind the scenes to test your program and showing the difference in brackets
 is a JUnit assertEquals feature.
@@ -332,8 +341,8 @@ CoffeeMakerQuestTest.  The purpose of this phase is to verify that CoffeeMakerQu
 
 1. CoffeeMakerQuestTest on CoffeeMakerQuestBuggy: CoffeeMakerQuestTest is your submitted JUnit test for CoffeeMakerQuest.  The purpose of this phase is
    to test CoffeeMakerQuestTest against the buggy CoffeeMakerQuestBuggy
-implementation.  The class CoffeeMakerQuestBuggy is given to you in the form of
-the coffeemaker-buggy.jar file.  Since CoffeeMakerQuestBuggy is buggy, you
+implementation.  The class CoffeeMakerQuestBuggy is given to you as part of
+the coffeemaker.jar file.  Since CoffeeMakerQuestBuggy is buggy, you
 expect the tests to fail this time.  If CoffeeMakerQuestTestSolution fails a
 test but CoffeeMakerQuestTest passes a test (or vice versa), then this indicates a problem.
 
