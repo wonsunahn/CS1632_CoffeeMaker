@@ -21,11 +21,10 @@ public class CoffeeMakerQuestTest {
 		Config.setBuggyPlayer(true);
 		Config.setBuggyRoom(true);
 
-		// TODO: 1. Create a mock Player with no items (no coffee, no cream, no sugar)
+		// TODO: 1. Create a Player with no items (no coffee, no cream, no sugar)
 		// and assign to player.
 
-		// TODO: 2. Create 6 mock rooms as specified in rooms.config and add to rooms
-		// list and assign to rooms.
+		// TODO: 2. Create 6 rooms as specified in rooms.config and add to rooms list.
 
 		// 3. Create Coffee Maker Quest game using player and rooms, and assign to cmq.
 		cmq = CoffeeMakerQuest.createInstance(player, rooms);
@@ -39,7 +38,7 @@ public class CoffeeMakerQuestTest {
 	 * Test case for String getInstructionsString().
 	 * 
 	 * <pre>
-	 * Preconditions: Player, rooms, and cmq have been created.
+	 * Preconditions: Player, rooms, and cmq test fixture been created.
 	 * Execution steps: Call cmq.getInstructionsString().
 	 * Postconditions: Return value is " INSTRUCTIONS (N,S,L,I,D,H) > ".
 	 * </pre>
@@ -53,7 +52,7 @@ public class CoffeeMakerQuestTest {
 	 * Test case for Room getCurrentRoom().
 	 * 
 	 * <pre>
-	 * Preconditions: Player, rooms, and cmq have been created.
+	 * Preconditions: Player, rooms, and cmq test fixture been created.
 	 * Execution steps: Call cmq.getCurrentRoom().
 	 * Postconditions: Return value is rooms.get(0).
 	 * </pre>
@@ -67,7 +66,7 @@ public class CoffeeMakerQuestTest {
 	 * Test case for void setCurrentRoom(Room room) and Room getCurrentRoom().
 	 * 
 	 * <pre>
-	 * Preconditions: Player, rooms, and cmq have been created.
+	 * Preconditions: Player, rooms, and cmq test fixture been created.
 	 * Execution steps: Call cmq.setCurrentRoom(rooms.get(2)).
 	 *                  Call cmq.getCurrentRoom().
 	 * Postconditions: Return value of cmq.setCurrentRoom(rooms.get(2)) is true. 
@@ -83,7 +82,7 @@ public class CoffeeMakerQuestTest {
 	 * Test case for boolean areDoorsPlacedCorrectly() when check succeeds.
 	 * 
 	 * <pre>
-	 * Preconditions: Player, rooms, and cmq have been created.
+	 * Preconditions: Player, rooms, and cmq test fixture been created.
 	 * Execution steps: Call cmq.areDoorsPlacedCorrectly().
 	 * Postconditions: Return value of cmq.areDoorsPlacedCorrectly() is true.
 	 * </pre>
@@ -97,7 +96,7 @@ public class CoffeeMakerQuestTest {
 	 * Test case for boolean areDoorsPlacedCorrectly() when check fails.
 	 * 
 	 * <pre>
-	 * Preconditions: Player, rooms, and cmq have been created.
+	 * Preconditions: Player, rooms, and cmq test fixture been created.
 	 *                rooms.get(3) is modified so that it has no south door.
 	 * Execution steps: Call cmq.areDoorsPlacedCorrectly().
 	 * Postconditions: Return value of cmq.areDoorsPlacedCorrectly() is false.
@@ -112,7 +111,7 @@ public class CoffeeMakerQuestTest {
 	 * Test case for String processCommand("I").
 	 * 
 	 * <pre>
-	 * Preconditions: Player, rooms, and cmq have been created.
+	 * Preconditions: Player, rooms, and cmq test fixture been created.
 	 * Execution steps: Call cmq.processCommand("I").
 	 * Postconditions: Return value is "YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n".
 	 * </pre>
@@ -126,10 +125,10 @@ public class CoffeeMakerQuestTest {
 	 * Test case for String processCommand("l").
 	 * 
 	 * <pre>
-	 * Preconditions: Player, rooms, and cmq have been created.
+	 * Preconditions: Player, rooms, and cmq test fixture been created.
 	 * Execution steps: Call cmq.processCommand("l").
 	 * Postconditions: Return value is "There might be something here...\nYou found some creamy cream!\n".
-	 *                 player.addItem(Item.CREAM) is called.
+	 *                 Item.CREAM has been added to the Player.
 	 * </pre>
 	 */
 	@Test
@@ -141,7 +140,7 @@ public class CoffeeMakerQuestTest {
 	 * Test case for String processCommand("n").
 	 * 
 	 * <pre>
-	 * Preconditions: Player, rooms, and cmq have been created.
+	 * Preconditions: Player, rooms, and cmq test fixture been created.
 	 *                cmq.setCurrentRoom(rooms.get(3)) has been called.
 	 * Execution steps: Call cmq.processCommand("n").
 	 *                  Call cmq.getCurrentRoom().
@@ -158,7 +157,7 @@ public class CoffeeMakerQuestTest {
 	 * Test case for String processCommand("s").
 	 * 
 	 * <pre>
-	 * Preconditions: Player, rooms, and cmq have been created.
+	 * Preconditions: Player, rooms, and cmq test fixture been created.
 	 * Execution steps: Call cmq.processCommand("s").
 	 *                  Call cmq.getCurrentRoom().
 	 * Postconditions: Return value of cmq.processCommand("s") is "A door in that direction does not exist.\n".
@@ -174,7 +173,7 @@ public class CoffeeMakerQuestTest {
 	 * Test case for String processCommand("D").
 	 * 
 	 * <pre>
-	 * Preconditions: Player, rooms, and cmq have been created.
+	 * Preconditions: Player, rooms, and cmq test fixture been created.
 	 * Execution steps: Call cmq.processCommand("D").
 	 *                  Call cmq.isGameOver().
 	 * Postconditions: Return value of cmq.processCommand("D") is "YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n\nYou drink the air, as you have no coffee, sugar, or cream.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n".
@@ -190,7 +189,7 @@ public class CoffeeMakerQuestTest {
 	 * Test case for String processCommand("D").
 	 * 
 	 * <pre>
-	 * Preconditions: Player, rooms, and cmq have been created.
+	 * Preconditions: Player, rooms, and cmq test fixture been created.
 	 *                Player has all 3 items (coffee, cream, sugar).
 	 * Execution steps: Call cmq.processCommand("D").
 	 *                  Call cmq.isGameOver().
