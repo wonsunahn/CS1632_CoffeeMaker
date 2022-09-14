@@ -8,29 +8,14 @@ public class Room {
 	private String southDoor;
 	
 	// Class constructor to populate the class variables
-	public Room(String furnishing, String adjective, Item item) {
+	public Room(String furnishing, String adjective, Item item, String northDoor, String southDoor) {
 		this.furnishing = furnishing;
 		this.adjective = adjective;
 		this.item = item;
-		this.northDoor = null;
-		this.southDoor = null;
+		this.northDoor = northDoor;
+		this.southDoor = southDoor;
 	}
 	
-	public void setNorthDoor(String door) {
-		if (Config.getBuggyRoom()) {
-			throw new UnsupportedOperationException("Injected bug for Room class");
-		}
-		northDoor = door;
-	}
-	
-	public void setSouthDoor(String door) {
-		if (Config.getBuggyRoom()) {
-			throw new UnsupportedOperationException("Injected bug for Room class");
-		}
-		southDoor = door;
-	}
-	
-	// Return the furnishing in the room
 	public String getFurnishing() {
 		if (Config.getBuggyRoom()) {
 			throw new UnsupportedOperationException("Injected bug for Room class");
@@ -38,7 +23,6 @@ public class Room {
 		return furnishing;
 	}
 
-	// Return the adjective of the room
 	public String getAdjective() {
 		if (Config.getBuggyRoom()) {
 			throw new UnsupportedOperationException("Injected bug for Room class");
@@ -46,15 +30,28 @@ public class Room {
 		return adjective;
 	}
 
-	// Return the item in the room
 	public Item getItem() {
 		if (Config.getBuggyRoom()) {
 			throw new UnsupportedOperationException("Injected bug for Room class");
 		}
 		return item;
 	}
+
+	public String getNorthDoor() {
+		if (Config.getBuggyRoom()) {
+			throw new UnsupportedOperationException("Injected bug for Room class");
+		}
+		return northDoor;
+	}
+
+	public String getSouthDoor() {
+		if (Config.getBuggyRoom()) {
+			throw new UnsupportedOperationException("Injected bug for Room class");
+		}
+		return southDoor;
+	}
 	
-	// Print the description for the current room (includes adjective, furnishing, and door description)
+	// Get the description for the current room (includes adjective, furnishing, and door description)
 	public String getDescription() {
 		if (Config.getBuggyRoom()) {
 			throw new UnsupportedOperationException("Injected bug for Room class");
