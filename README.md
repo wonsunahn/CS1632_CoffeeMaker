@@ -13,11 +13,11 @@
 - [Resources](#resources)
 
 # CS 1632 - Software Quality Assurance
-Fall Semester 2022
+Spring Semester 2023
 
-* DUE: October 3, 2022 before start of class
+* DUE: February 14, 2023 before start of class
 
-**GitHub Classroom Link:** https://classroom.github.com/a/a3CjQ2DK
+**GitHub Classroom Link:** TBD
 
 ## Deliverable 2
 
@@ -68,7 +68,7 @@ Please make sure that the rooms.config file has doors at all interconnected room
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  1.593 s
-[INFO] Finished at: 2022-09-13T16:33:14-04:00
+[INFO] Finished at: 2023-01-13T16:33:14-04:00
 [INFO] ------------------------------------------------------------------------
 ```
 
@@ -118,7 +118,7 @@ Tests run: 11, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  5.144 s
-[INFO] Finished at: 2022-09-13T16:42:54-04:00
+[INFO] Finished at: 2023-01-13T16:42:54-04:00
 [INFO] ------------------------------------------------------------------------
 ...
 ```
@@ -168,7 +168,7 @@ Tests run: 24, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  3.949 s
-[INFO] Finished at: 2022-09-07T02:52:08-04:00
+[INFO] Finished at: 2023-01-07T02:52:08-04:00
 [INFO] ------------------------------------------------------------------------
 ...
 ```
@@ -228,7 +228,7 @@ Tests run: 23, Failures: 21, Errors: 1, Skipped: 0
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  5.223 s
-[INFO] Finished at: 2022-09-13T16:50:31-04:00
+[INFO] Finished at: 2023-01-13T16:50:31-04:00
 [INFO] ------------------------------------------------------------------------
 ...
 ```
