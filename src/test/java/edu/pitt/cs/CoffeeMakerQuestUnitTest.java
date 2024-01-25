@@ -24,7 +24,10 @@ public class CoffeeMakerQuestUnitTest {
 		// 1. Create a Player with no items (no coffee, no cream, no sugar) and assign to player.
 		// TODO: Fill in
 
-		// 2. Create 6 rooms as specified in rooms.config and add to rooms list.
+		// 2. Create 6 rooms exactly as specified in rooms.config and add to rooms list.
+		// You are expected to hard-code the room configurations. The test cases in this
+		// class depend on those hard-coded values, so it would be pointless to allow
+		// them to be changed.
 		// TODO: Fill in
 
 		// 3. Create a CoffeeMakerQuest object using player and rooms and assign to cmq.
