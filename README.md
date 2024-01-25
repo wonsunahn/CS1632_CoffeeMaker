@@ -240,6 +240,18 @@ that number, add more unit tests to CoffeeMakerQuestUnitTest.  View the detailed
 line-by-line Jacoco coverage report for CoffeeMakerQuestImpl to see which lines
 you are missing and come up with test cases that are able to hit those lines.
 
+* When you generate or test strings in your code and multiple lines are
+  involved, please make it a habit of using the **newline** variable that is
+defined in all relevant classes, instead of hard-coding "\n" or "\r\n".  The
+newline variable is initialized using the System.lineSeparator() API, which
+will return the correct newline string for the current system ("\n" for
+Mac/Linux systems and "\r\n" for Windows systems).  This is also the newline
+that is used by all your System.out.println calls.  If you hard-code either
+"\n" or "\r\n", there is a danger that it will be different from the system
+newline and this will result in a mix of different newline strings in the
+output.  This obviously complicates testing your software, not to speak of
+other systems that may need to read an parse your output.
+
 * You are expected to apply **DRY (Don't Repeat Yourself)** when coding.  This
   is an important aspect of writing testable and maintainable code (we will
 discuss more aspects of this is a future chapter).  For example, the Player
