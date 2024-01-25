@@ -13,234 +13,343 @@
 - [Resources](#resources)
 
 # CS 1632 - Software Quality Assurance
-Fall Semester 2023
+Spring Semester 2024
 
-* DUE: October 2, 2023 before start of class
+* DUE: February 13, 2024 before start of class
 
 **GitHub Classroom Link:** TBD
 
-## Deliverable 2
+## Description
 
-For this assignment, your group will write code and unit tests for an
-authorized reproduction of Coffee Maker Quest.  
+In this deliverable, we will build a game called CoffeeMakerQuest.
+CoffeeMakerQuest is an old school text-based adventure game where the player
+searches a house for coffee, cream, and sugar to make a cup of coffee for
+herself.  Just like for Exercise 2, you will practice Test Driven Development
+so that you always code under the cover of unit testing.  You will also do an
+integration test at the end.
 
-Requirements for this program is that you mimic the behavior of the program
-coffeemaker.jar given in this folder exactly.  This is a version of the Coffee
-Maker Quest game we tested for Deliverable 1, but with defects removed.
+You will modify the classes in the source tree in the following ways:
 
-Some of the work has already been done for you.  Classes such as
-CoffeeMakerQuest.java, Config.java, Game.java, Player.java, Room.java, and
-RoomsJSONParser.java are already complete.  You need only modify
-CoffeeMakerQuestImpl.java and CoffeeMakerQuestTest.java.  As in the exercise,
-the places where you need to modify code are marked by the // TODO comments.
-DO NOT TOUCH the already complete classes as they will be used AS IS during
-grading.  Here is a brief rundown of the files:
+* CoffeeMakerQuest.java - The CoffeeMakerQuest interface with a createInstance method with which to create CoffeeMakerQuest objects of different types.  **Fill in** the part where the method creates a mock CoffeeMakerQuest type.
+* CoffeeMakerQuestImpl.java - An implementation of the CoffeeMakerQuest interface.  **Fill in** the class with member variables and method implementations.  When a newline is required as part of a string, take care to use the pre-defined platform-independent newline variable.
+* Game - Contains the main method of the game.  This class is already complete.
+* InstanceType.java - This is a Java enumeration for instance types, and you don't need to touch.
+* Item.java - This is another Java enumeration for item types, and you don't need to touch.
+* Player.java - The Player interface with a createInstance method with which to create Players of different types.  **Fill in** the part where the method creates a mock Player type.
+* PlayerImpl.java - An implementation of the Player interface.  **Fill in** the class with member variables and method implementations.  When a newline is required as part of a string, take care to use the pre-defined platform-independent newline variable.
+* Room.java - The Room interface with a createInstance method with which to create Rooms of different types.  **Fill in** the part where the method creates a mock Room type.
+* RoomImpl.java - An implementation of the Room interface.  **Fill in** the class with member variables and method implementations.  When a newline is required as part of a string, take care to use the pre-defined platform-independent newline variable.
+* RoomsJSONParser.java - Class that generates a list of rooms by reading in the rooms.config JSON file.  This class is already complete.
 
-* CoffeeMakerQuestImpl.java - an implementation of CoffeeMakerQuest (**modify**)
-* CoffeeMakerQuestTest.java - JUnit test class CoffeeMakerQuest (**modify**)
-* CoffeeMakerQuest.java - the interface for the CoffeeMakerQuest game engine
-* Config.java - allows configuration of bug injection into various classes (for grading purposes mostly)
-* Game.java - contains the main method; generates rooms and runs the game using the CoffeeMakerQuest engine
-* Player.java - player object with inventory information
-* Room.java - room object with furnishings and items
-* RoomsJSONParser.java - uses JSON parser to read in rooms.config file
-* coffeemaker.jar - reference implementation
-* rooms.config - the rooms map configuration file
+* CoffeeMakerQuestUnitTest.java - The JUnit class that unit tests CoffeeMakerQuest objects.
+* PlayerUnitTest.java - The JUnit class that unit tests Player objects.
+* RoomUnitTest.java - The JUnit class that unit tests Room objects.
+* GameIntegrationTest.java - The JUnit class that integration tests the entire CoffeeMakerQuest game.
+
+All source code locations where you need to add code is marked with "// TODO"
+comments.  These comments conveniently show up in the Problems pane of your
+VSCode IDE.
 
 ## Running the Program
 
-Let's try compiling the game and running using the Maven build system:
+### Using VSCode
 
-```
-mvn compile
-```
+You can run the program using the VSCode "Run and Debug" extension on the left
+menu (the one that looks like a play icon with a bug attached to it).  Once you
+click on it, you will see a dropdown menu on the topside.  
 
-```
-mvn exec:java 
-```
+1. To launch the solution version of the program, choose "Launch GameSolution"
+and then press the green play button.  
 
-When you run it as-is, you will get the following output:
+   After you launch the program, you can start playing the game:
+
+   ```
+   Coffee Maker Quest 1.0
+
+   You see a Small room.
+   It has a Quaint sofa.
+   A Magenta door leads North.
+
+    INSTRUCTIONS (N,S,L,I,D,H) >
+   ...
+   ```
+
+1. To launch the current implementation of the program, choose "Launch Game"
+and then press the green play button.  You will get the below output:
+
+   ```
+   Please make sure that the rooms.config file has doors at all interconnected rooms.
+   ```
+
+   The game fails to even initialize correctly.  It will work as expected once you are done.
+
+### Using Commandline
+
+You can also run the program on the commandline using Maven.
+
+1. To launch the solution version of the program, you simply need to invoke the
+solution jar file included in the folder:
+
+   ```
+   java -jar rentacat-solution-1.0.0.jar
+   ```
+
+1. To launch the current implementation of the program, you first need to
+compile the program using the 'test-compile' phase on Maven:
+
+   ```
+   mvn test-compile
+   ```
+
+   If the compilation is successful, all soure codes under src/ are compiled to
+class files under target/classes.  Make sure you invoke the 'test-compile'
+phase and not the 'compile' phase.  The former will compile both your
+implementation classes under the src/main folder and your test classes under
+the src/test folder.  The latter will only compile your implementation classes.
+
+   Next, invoke the 'exec' phase, which is configured to invoked RentACatImpl in pom.xml:
+
+   ```
+   mvn exec:java 
+   ```
+
+## Testing the Program
+
+Again, you can use either VSCode or the commandline to test your program.
+
+### Using VSCode
+
+You can run the program using the VSCode "Testing" extension on the left menu
+(the one that looks like a flask icon).  Once you click on it, you will see
+options to run the entire test suite, an individual JUnit test class, or an
+individual JUnit test method. 
+
+The "Testing" extension solely invokes the JUnit test classes and does not
+invoke third party Maven testing plugins listed in the pom.xml file, such as
+Jacoco.  For that, you will have to invoke Maven directly as explained below.
+
+### Using Commandline
+
+You can invoke the 'test' phase in Maven:
+
+   ```
+   mvn test
+   ```
+
+   The Maven framework looks for any JUnit test classes under src/test/, and
+invokes them one by one.  You should get a result that looks like this:
 
 ```
 ...
-Please make sure that the rooms.config file has doors at all interconnected rooms.
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  1.593 s
-[INFO] Finished at: 2023-09-05T16:33:14-04:00
-[INFO] ------------------------------------------------------------------------
-```
-
-The game fails to start up properly because it fails a sanity check of the
-rooms.config that checks whether all rooms have doors to neighboring rooms.
-And that is not happening not because rooms.config really has a configuration
-problem, but because your CoffeeMakerQuestImpl is yet incomplete.  When you are
-done implementing, you should get identical behavior as running the reference
-jar file:
-
-```
-java -jar coffeemaker.jar
-```
-
-## Running Unit Tests
-
-As in the Exercise, invoke the Maven 'test' phase:
-
-```
-mvn test
-```
-
-You should get output that looks like this:
-
-```
-...
--------------------------------------------------------
- T E S T S
--------------------------------------------------------
-Running edu.pitt.cs.CoffeeMakerQuestTest
-Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.112 sec
-
-Results :
-
-Tests run: 11, Failures: 0, Errors: 0, Skipped: 0
-
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running edu.pitt.cs.CatUnitTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.081 s -- in edu.pitt.cs.CatUnitTest
+[INFO] Running edu.pitt.cs.RentACatIntegrationTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in edu.pitt.cs.RentACatIntegrationTest
+[INFO] Running edu.pitt.cs.RentACatUnitTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in edu.pitt.cs.RentACatUnitTest
+[INFO] 
+[INFO] Results:
 [INFO]
-[INFO] --- jacoco-maven-plugin:0.8.4:report (post-unit-test) @ coffeemaker ---
-[INFO] Loading execution data file C:\Users\mrabb\Documents\github\cs1632\CS1632_CoffeeMaker\target\jacoco.exec
-[INFO] Analyzed bundle 'coffeemaker' with 9 classes
+[INFO] Tests run: 27, Failures: 0, Errors: 0, Skipped: 0
 [INFO]
-[INFO] --- jacoco-maven-plugin:0.8.4:check (check-unit-test) @ coffeemaker ---
-[INFO] Loading execution data file C:\Users\mrabb\Documents\github\cs1632\CS1632_CoffeeMaker\target\jacoco.exec
-[INFO] Analyzed bundle 'coffeemaker' with 9 classes
-[WARNING] Rule violated for class edu.pitt.cs.CoffeeMakerQuestImpl: instructions covered ratio is 0.17, but expected minimum is 0.90
+[INFO]
+[INFO] --- jacoco:0.8.11:report (post-unit-test) @ rentacat ---
+[INFO] Loading execution data file C:\Users\mrabb\Documents\github\cs1632\CS1632_RentACat\target\jacoco.exec
+[INFO] Analyzed bundle 'rentacat' with 5 classes
+[INFO] 
+[INFO] --- jacoco:0.8.11:check (check-unit-test) @ rentacat ---
+[INFO] Loading execution data file C:\Users\mrabb\Documents\github\cs1632\CS1632_RentACat\target\jacoco.exec
+[INFO] Analyzed bundle 'rentacat' with 5 classes
+[WARNING] Rule violated for class edu.pitt.cs.RentACatImpl: instructions covered ratio is 0.00, but expected minimum is 0.20
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  5.144 s
-[INFO] Finished at: 2023-09-05T16:42:54-04:00
+[INFO] Total time:  6.047 s
+[INFO] Finished at: 2024-01-23T09:34:07-05:00
 [INFO] ------------------------------------------------------------------------
 ...
 ```
 
-Again, don't get too excited about all the unit tests passing --- that is only
-because the test cases are currently empty.  In fact, the build fails in the
-code coverage verification phase because the current coverage is only 17% which
-is way below our target of 90%.  You will have to fill in all the provided test
-cases, and perhaps add a few test cases of your own, to hit 90%.
-
-## Development Methodology
-
-Like Exercise 2, we will try to apply the Test Driven Development (TDD) model
-here.  Try writing the test case(s) FIRST before writing the code for a
-feature.  This way, you will always have test coverage for the code you have
-written and are writing.  Hence, if you break any part of it in the course of
-adding a feature or refactoring your code, you will know immediately.
-
-## Expected Outcome
-
-When all is done, you should see something like the following when running 'mvn
-test' (number of tests may vary depending on how many tests are required to
-reach 90% coverage):
+Note that out of the 27 tests run, 0 tests were failures.  Apparently, all
+tests passed!  So are we done?  Far from it!  The reason that there are no
+failures is because all test cases are currently empty.  Pay attention to the
+following line in the output:
 
 ```
-...
--------------------------------------------------------
- T E S T S
--------------------------------------------------------
-Running edu.pitt.cs.CoffeeMakerQuestTest
-Tests run: 24, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.46 sec
-
-Results :
-
-Tests run: 24, Failures: 0, Errors: 0, Skipped: 0
-
-[INFO]
-[INFO] --- jacoco-maven-plugin:0.8.4:report (post-unit-test) @ coffeemaker ---
-[INFO] Loading execution data file C:\Users\mrabb\Documents\github\cs1632\CS1632_CoffeeMaker_Solution\target\jacoco.exec
-[INFO] Analyzed bundle 'coffeemaker' with 7 classes
-[INFO]
-[INFO] --- jacoco-maven-plugin:0.8.4:check (check-unit-test) @ coffeemaker ---
-[INFO] Loading execution data file C:\Users\mrabb\Documents\github\cs1632\CS1632_CoffeeMaker_Solution\target\jacoco.exec
-[INFO] Analyzed bundle 'coffeemaker' with 7 classes
-[INFO] All coverage checks have been met.
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  3.949 s
-[INFO] Finished at: 2023-09-05T02:52:08-04:00
-[INFO] ------------------------------------------------------------------------
-...
+[WARNING] Rule violated for class edu.pitt.cs.RentACatImpl: instructions covered ratio is 0.00, but expected minimum is 0.20
 ```
 
-## Verifying the Test Cases
-
-Just like for the exercises, as an extra precaution, we would like to verify
-our test cases against a buggy implementation to make sure that they are able
-to catch defects.
-
-In order to apply your unit tests to CoffeeMakerQuestBuggy, add the following line to
-the beginning of the @Before setUp() method:
-
-```
-Config.setBuggyCoffeeMakerQuest(true);
-```
-
-If you run 'mvn test' after having done so, you should be detecting lots of defects:
+It is saying that the test phase expected a minimum of 20% instruction coverage
+for the RentACatImpl class, but the tests achieved 0%.  Hence that is why it
+says 'BUILD FAILURE' in the end.  We were only able to cover 0% exactly
+becauase all test cases are empty.  You can see for yourself in all the test
+classes under the src/test/ folder that all test cases have just // TODO
+comments in them.  The 20% coverage threshold is configured in the pom.xml file
+in the Jacoco plugin section:
 
 ```
--------------------------------------------------------
- T E S T S
--------------------------------------------------------
-Running edu.pitt.cs.CoffeeMakerQuestTest
-Tests run: 23, Failures: 21, Errors: 1, Skipped: 0, Time elapsed: 0.61 sec <<< FAILURE!
-...
-Results :
-
-Failed tests:   testAreDoorsPlacedCorrectly(edu.pitt.cs.CoffeeMakerQuestTest)
-  testAreDoorsPlacedCorrectlyMissingSouthDoor(edu.pitt.cs.CoffeeMakerQuestTest)
-  testGetCurrentRoom(edu.pitt.cs.CoffeeMakerQuestTest): expected same:<Mock for Room, hashCode: 503144273> was not:<Mock for Room, hashCode: 1009916891>        
-  testGetHelpString(edu.pitt.cs.CoffeeMakerQuestTest): java.lang.IllegalArgumentException: object is not an instance of declaring class
-  testGetInstructionsString(edu.pitt.cs.CoffeeMakerQuestTest): expected:< INSTRUCTIONS [(N,S,L,I,D,H) ]> > but was:< INSTRUCTIONS []> >
-  testHelpString(edu.pitt.cs.CoffeeMakerQuestTest): expected:<[N - Go north(..)
-  testIsRoomUnique(edu.pitt.cs.CoffeeMakerQuestTest): java.lang.IllegalArgumentException: object is not an instance of declaring class
-  testProcessCommandDLose(edu.pitt.cs.CoffeeMakerQuestTest): expected:<...GAR!(..)
-  testProcessCommandDLoseCoffee(edu.pitt.cs.CoffeeMakerQuestTest): expected:<(..)
-  testProcessCommandDLoseCoffeeCream(edu.pitt.cs.CoffeeMakerQuestTest): expected:<(..)
-  testProcessCommandDLoseCoffeeSugar(edu.pitt.cs.CoffeeMakerQuestTest): expected:<(..)
-  testProcessCommandDLoseCream(edu.pitt.cs.CoffeeMakerQuestTest): expected:<(..)
-  testProcessCommandDLoseCreamSugar(edu.pitt.cs.CoffeeMakerQuestTest): expected:<(..)
-  testProcessCommandDLoseSugar(edu.pitt.cs.CoffeeMakerQuestTest): expected:<(..)
-  testProcessCommandDWin(edu.pitt.cs.CoffeeMakerQuestTest): expected:<...gar.(..)
-  testProcessCommandI(edu.pitt.cs.CoffeeMakerQuestTest): expected:<[YOU HAVE NO COFFEE!(..)
-  testProcessCommandLCoffee(edu.pitt.cs.CoffeeMakerQuestTest): expected:<[There might be something here...(..)
-  testProcessCommandLCream(edu.pitt.cs.CoffeeMakerQuestTest): expected:<[There might be something here...(..)
-  testProcessCommandLNone(edu.pitt.cs.CoffeeMakerQuestTest): expected:<[You don't see anything out of the ordinary.](..)
-  testProcessCommandS(edu.pitt.cs.CoffeeMakerQuestTest): expected:<Mock for Room, hashCode: 254955665> but was:<null>
-  testSetCurrentRoom(edu.pitt.cs.CoffeeMakerQuestTest)
-
-Tests in error:
-  testProcessCommandLSugar(edu.pitt.cs.CoffeeMakerQuestTest): Index: 6, Size: 6
-
-Tests run: 23, Failures: 21, Errors: 1, Skipped: 0
-
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  5.223 s
-[INFO] Finished at: 2023-09-05T16:50:31-04:00
-[INFO] ------------------------------------------------------------------------
-...
+   ...
+   <configuration>
+     <dataFile>${project.build.directory}/jacoco.exec</dataFile>
+     <rules>
+       <rule>
+	 <element>CLASS</element>
+	 <limits>
+	   <limit>
+	     <counter>INSTRUCTION</counter>
+	     <value>COVEREDRATIO</value>
+	     <minimum>20%</minimum>
+	   </limit>
+	 </limits>
+	 <includes>
+	    <include>edu.pitt.cs.RentACatImpl</include>
+	 </includes>
+       </rule>
+     </rules>
+   </configuration>
+   ...
 ```
 
-Your list of failures may differ depending on what additional test cases you
-added.  If see your RentACatTest not catching defects in the buggy
-implementation on GradeScope, you can try to see what you may have done wrong
-by experimenting CoffeeMakerQuestBuggy (it is the same exact version used on
-GradeScope).
+Jacoco is short for the **Ja**va **Co**de **Co**verage tool.  The documentation
+on how to configure like the above is given at:
+https://www.eclemma.org/jacoco/trunk/doc/check-mojo.html We will talk more
+about Jacoco later in the [Measuring Code Coverage](#measuring-code-coverage)
+section.
 
-**Don't forget to revert your CoffeeMakerQuestTest.java by removing the
-'Config.setBuggyCoffeeMakerQuest(true);' line after you are done!**
+## Software Developement Life Cycle using Test Driven Development
+
+Now we know how to run the program and test the program, it is time to get to
+work in completing the Rent-A-Cat system.
+
+We will try to apply the Test Driven Development (TDD) model and the
+Red-Green-Refactor (RGR) loop.  Try writing the test case(s) FIRST before
+writing the code for a feature.  This way, you will always have 100% test
+coverage for the code you have written and are writing.  Hence, if you break
+any part of it in the course of adding a feature or refactoring your code, you
+will know immediately.  Otherwise, if you test at the very end, it will be much
+harder to find the defect and fix it.
+
+Then, the logical order with which to write the code is the following:
+
+1. CatUnitTest.java - Write the unit tests for Cat (Red: most tests will initially fail).
+1. CatImpl.java - Write the implementation for Cat (Green: all tests should pass now).  Refactor as needed.
+1. RentACatUnitTest.java - Write the unit tests for RentACat (Red: most tests will initially fail).
+1. RentACatImpl.java - Write the implementation for RentACat (Green: all tests should pass now).  Refactor as needed.
+1. RentACatIntegrationTest.java - Write integration tests for the Rent-A-Cat system (Hopefully everything works together).  Fortunately for you, you will be able to reuse a lot of the code you already wrote for RentACatUnitTest.java since many tests are going to look the same regardless of whether it is a unit test or integration test, with a few exceptions.
+
+When writing the JUnit test cases, please pay close attention to the Javadoc
+comment above each test method that describes the preconditions, execution
+steps, and postconditions for that test case.  Also, please note that all or
+part of the preconditions may be fulfilled by the test fixture built in the
+@Before setUp() method in every JUnit test class.
+
+In the @Before setUp() method of each test class, you are asked to create Cat
+objects and RentACat objects that comprise the test fixture, as part of your
+TODOs.  You have a choice between creating real objects or mock objects,
+depending on the testing situation.  I will leave it up to you to make the
+correct decision based on the lectures.  If you are creating a mock object, you
+will have to fill in the TODO code for creating that mock object in either the
+Cat.java or RentACat.java interfaces.
+
+Another thing you need to do in the @Before setUp() method is to hijack the
+system output for testing purposes.  Please refer to the
+[textbook](../../software-quality-assurance-textbook.pdf) chapter 14.6 on
+Testing System Output.  In short, you need to first back up the original system
+output which is going to stdout (the standard output to your console).  Then
+you need to replace it with a ByteArrayOutputStream variable named "out".  Now
+all prints to System.out will be stored in the "out" buffer, which can be
+converted to a String for testing purposes using out.toString().  In the @After
+tearDown() method, you will restore stdout to system output.  Now, this may
+complicate print debugging since all your debugging messages will go to "out"
+instead of being printed to your console.  For debugging purposes, you can use
+System.err.println rather than System.out.println, which uses the stderr
+stream, which still goes to the console.  In VSCode, stderr is routed to a
+special console called the Debug Console that is available as a tab on the
+bottom pane.
+
+### Verifying Your Test Cases
+
+While you are still in the Red phase of the RGR loop, it is hard to have
+confidence in your test code if you are a novice JUnit tester, especially since
+your test is most likely failing.  To ease development, I have provided a
+solution version of the software and also a buggy version of the software in
+the rentacat-solution-1.0.0.jar file.  The JAR file includes the CatSolution
+and RentACatSolution classes along with CatBuggy and RentACatBuggy classes.
+Being a JAR file, the source code of those classes are not available to you
+(for obvious reasons), but you can still invoke them.
+
+In order to create solution versions of the Cat and RentACat classes do the
+following in the @Before setUp() method:
+
+```
+c1 = Cat.createInstance(InstanceType.SOLUTION, 1, "Jennyanydots");
+```
+```
+r = RentACat.createInstance(InstanceType.SOLUTION);
+```
+
+In order to create buggy versions, do the following:
+
+```
+c1 = Cat.createInstance(InstanceType.BUGGY, 1, "Jennyanydots");
+```
+```
+r = RentACat.createInstance(InstanceType.BUGGY);
+```
+
+If you implemented your test case correctly, it should always pass for the
+solution object and it should almost always fail for the buggy object.  There
+are only 3 exceptions where the buggy object passes and they are:
+RentACatIntegrationTest.testGetCatNullNumCats0(),
+RentACatUnitTest.testGetCatNullNumCats0(), and
+RentACatUnitTest.testGetCatNumCats3().
+
+After you are done writing the test cases, please don't forget to revert back
+to the IMPL InstanceType, to be able to test your own code for the green phase.
+
+## Measuring Code Coverage
+
+Code coverage is a metric that measures what percentage of the code base a
+particular test run covered.  There are several ways to measure code coverage,
+but the most widespread method is to measure the percentage of code lines
+covered.  Typically a code coverage of above 80\% or 90\% is targeted in
+software organizations.  I will require that level of coverage for the
+Deliverable.  Since this is just an exercise, the minimum coverage is set to be
+20%, which you should be able to achieve easily.
+
+Jacoco (**Ja**va **Co**de **Co**verage tool), is one of the most popular code
+coverage measurement tools among Java developers, and that's what we will use
+in this class.  Jacoco has already been integrated into the test phase of our
+Maven project, so you should already have coverage statistics generated from
+your last 'mvn test' run at:
+
+```
+target/site/jacoco/
+```
+
+Now, if any of your JUnit tests failed, Jacoco will not generate the report.
+I recommend that you makes your tests pass before running it.  If you want
+to force Jacoco to produce the report even with test failures, do:
+
+```
+mvn jacoco:report
+```
+
+The statistics are generated XML (jacoco.xml), CSV (jacoco.csv), and HTML
+(index.html) formats.  The XML and CSV formats are designed to be easily
+readable by later stages of the testing pipeline that automatically generate
+reports or send notifications to developers.  The HTML format is meant for
+human cosumption.  Try opening index.html and drill down to either the CatImpl
+class or the RentACatImpl class, which are the classes under test which we are
+interested in measuring code coverage for.  If you have implemented all the
+test cases, it should look similar to the following screenshots:
+
+<img alt="Code Coverage Jacoco" src=code_coverage_cat.png width=700>
+
+<img alt="Code Coverage Jacoco" src=code_coverage_rentacat.png width=700>
 
 ## Additional Requirements
 
