@@ -158,43 +158,34 @@ interface, it is okay to leave that part unfilled.
 
 ### Verifying Your Test Cases
 
-While you are still in the Red phase of the RGR loop, it is hard to have
-confidence in your test code if you are a novice JUnit tester, especially since
-your test is most likely failing.  To ease development, I have provided a
-solution version of the software and also a buggy version of the software in
-the rentacat-solution-1.0.0.jar file.  The JAR file includes the CatSolution
-and RentACatSolution classes along with CatBuggy and RentACatBuggy classes.
-Being a JAR file, the source code of those classes are not available to you
-(for obvious reasons), but you can still invoke them.
+Just like for Exercise 2, I have provided a solution version of the software
+and also a buggy version of the software in the coffeemaker-solution-1.0.0.jar
+file.  The JAR file includes: RoomSolution, RoomBuggy, PlayerSolution,
+PlayerBuggy, CoffeeMakerQuestSolution, CoffeeMakerQuestBuggy, GameSolution, and
+GameBuggy classes.
 
-In order to create solution versions of the Cat and RentACat classes do the
-following in the @Before setUp() method:
+You can create solution or buggy versions of a particular object in ways similar to Exercise 2:
 
 ```
-c1 = Cat.createInstance(InstanceType.SOLUTION, 1, "Jennyanydots");
+p = Player.createInstance(InstanceType.SOLUTION);
 ```
 ```
-r = RentACat.createInstance(InstanceType.SOLUTION);
-```
-
-In order to create buggy versions, do the following:
-
-```
-c1 = Cat.createInstance(InstanceType.BUGGY, 1, "Jennyanydots");
-```
-```
-r = RentACat.createInstance(InstanceType.BUGGY);
+p = Player.createInstance(InstanceType.BUGGY);
 ```
 
-If you implemented your test case correctly, it should always pass for the
-solution object and it should almost always fail for the buggy object.  There
-are only 3 exceptions where the buggy object passes and they are:
-RentACatIntegrationTest.testGetCatNullNumCats0(),
-RentACatUnitTest.testGetCatNullNumCats0(), and
-RentACatUnitTest.testGetCatNumCats3().
+You can do the same for the other objects.  Now when you are writing
+GameIntegrationTest.java, you don't create a Game object.  Instead, you call
+the static main method of Game, so a different strategy needs to be used.
+Instead of calling Game.main, you can call GameSolution.main or GameBuggy.main
+to invoke the solution and buggy versions respectively.
 
-After you are done writing the test cases, please don't forget to revert back
-to the IMPL InstanceType, to be able to test your own code for the green phase.
+For all your test cases, all of them should pass for the solution version
+(obviously) and also all of them should fail for the buggy version (for various
+reasons).
+
+Again, after you are done writing the test cases, please don't forget to revert
+back to the IMPL InstanceType and the Game.main method, to be able to test your
+own code for the green phase of the RGR loop.
 
 ## Measuring Code Coverage
 
