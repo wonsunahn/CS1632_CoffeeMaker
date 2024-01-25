@@ -6,14 +6,14 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Game",
+            "name": "Launch Game",
             "request": "launch",
             "mainClass": "edu.pitt.cs.Game",
             "projectName": "coffeemaker"
         },
         {
             "type": "java",
-            "name": "Game Solution",
+            "name": "Launch GameSolution",
             "request": "launch",
             "mainClass": "edu.pitt.cs.GameSolution",
             "projectName": "coffeemaker"
