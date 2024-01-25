@@ -1,9 +1,11 @@
 package edu.pitt.cs;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 
+	static final String newline = System.lineSeparator(); // Platform independent newline ("\n" or "\r\n")
+	
 	// TODO: Add more member variables and methods as needed.
 
 	/**
@@ -15,7 +17,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	 * @param rooms  List of rooms in this game
 	 */
 	CoffeeMakerQuestImpl(Player player, ArrayList<Room> rooms) {
-		// TODO
+		// TODO: Fill in
 	}
 
 	/**
@@ -24,7 +26,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	 * @return true if the game is over, false otherwise
 	 */
 	public boolean isGameOver() {
-		// TODO
+		// TODO: Fill in
 		return false;
 	}
 
@@ -37,7 +39,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	 * @return true if check successful, false otherwise
 	 */
 	public boolean areDoorsPlacedCorrectly() {
-		// TODO
+		// TODO: Fill in
 		return false;
 	}
 
@@ -48,7 +50,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	 */
 
 	public boolean areRoomsUnique() {
-		// TODO
+		// TODO: Fill in
 		return false;
 	}
 
@@ -59,7 +61,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	 * @return room player is in, or null if not yet initialized
 	 */
 	public Room getCurrentRoom() {
-		// TODO
+		// TODO: Fill in
 		return null;
 	}
 
@@ -71,7 +73,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	 * @return true if successful, false otherwise
 	 */
 	public boolean setCurrentRoom(Room room) {
-		// TODO
+		// TODO: Fill in
 		return false;
 	}
 
@@ -82,7 +84,19 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	 * @return comamnd prompt string
 	 */
 	public String getInstructionsString() {
-		// TODO
+		// TODO: Fill in
+		return "";
+	}
+
+	/**
+	 * A helper method for the "H" command.  It returns the following help string:
+	 * "N - Go north" + newline + "S - Go south" + newline + "L - Look and collect any items in the room" + newline +
+	 * "I - Show inventory of items collected" + newline + "D - Drink coffee made from items in inventory" + newline.
+	 * 
+	 * @return help string
+	 */
+	private String getHelpString() {
+		// TODO: Fill in
 		return "";
 	}
 
@@ -101,7 +115,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	 * @return response string for the command
 	 */
 	public String processCommand(String cmd) {
-		// TODO
+		// TODO: Fill in
 		return "";
 	}
 

@@ -1,10 +1,13 @@
 package edu.pitt.cs;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Game {	
+import com.google.gson.JsonIOException;
+
+public class Game {
 	public static void main(String[] args) {
 		ArrayList<Room> rooms;
 		RoomsJSONParser parser = new RoomsJSONParser();
@@ -16,7 +19,7 @@ public class Game {
 			return;
 		}
 
-		CoffeeMakerQuest cmq = CoffeeMakerQuest.createInstance(new Player(), rooms);
+		CoffeeMakerQuest cmq = CoffeeMakerQuest.createInstance(InstanceType.IMPL, Player.createInstance(InstanceType.IMPL), rooms);
 
 		if (cmq.areDoorsPlacedCorrectly() == false) {
 			System.out.println("Please make sure that the rooms.config file has doors at all interconnected rooms.");
@@ -27,16 +30,18 @@ public class Game {
 			System.out.println("Please make sure that rooms in the rooms.config file have unique adjectives and furnishings.");
 			return;
 		}
-					
-		System.out.println("Coffee Maker Quest 1.0\n");
+
+		System.out.println("Coffee Maker Quest 1.0");
+		System.out.println("");
 		
+
 		Scanner scanner = new Scanner(System.in);
-		
+
 		// Main game loop
-		while(cmq.isGameOver() == false) {
+		while (cmq.isGameOver() == false) {
 			System.out.println(cmq.getCurrentRoom().getDescription());
 			System.out.println(cmq.getInstructionsString());
-			
+
 			String cmd = scanner.nextLine();
 			String response = cmq.processCommand(cmd);
 			System.out.println(response);

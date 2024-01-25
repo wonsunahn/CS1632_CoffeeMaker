@@ -1,80 +1,35 @@
 package edu.pitt.cs;
 
-class Player {
-	private boolean hasCoffee;
-	private boolean hasCream;
-	private boolean hasSugar;
+import static org.mockito.Mockito.when;
+
+import org.mockito.*;
+
+public interface Player {
+	static final String newline = System.lineSeparator(); // Platform independent newline ("\n" or "\r\n")
 	
-	public Player() {
-		hasCoffee = false;
-		hasCream = false;
-		hasSugar = false;
-	}
-	
-	public boolean checkCoffee() {
-		if (Config.getBuggyPlayer()) {
-			throw new UnsupportedOperationException("Injected bug for Player class");
-		}
-		return hasCoffee;
-	}
-	
-	public boolean checkCream() {
-		if (Config.getBuggyPlayer()) {
-			throw new UnsupportedOperationException("Injected bug for Player class");
-		}
-		return hasCream;
-	}
-	
-	public boolean checkSugar() {
-		if (Config.getBuggyPlayer()) {
-			throw new UnsupportedOperationException("Injected bug for Player class");
-		}
-		return hasSugar;
-	}
-	
-	public void addItem(Item item) {
-		if (Config.getBuggyPlayer()) {
-			throw new UnsupportedOperationException("Injected bug for Player class");
-		}
-		switch(item) {
-		case COFFEE:
-			hasCoffee = true;
-			break;
-		case CREAM:
-			hasCream = true;
-			break;
-		case SUGAR:
-			hasSugar = true;
-			break;
-		case NONE:
-			break;
+	public static Player createInstance(InstanceType type) {
+		switch (type) {
+			case IMPL:
+				return new PlayerImpl();
+			case BUGGY:
+				return new PlayerBuggy();
+			case SOLUTION:
+				return new PlayerSolution();
+			case MOCK:
+				// TODO: Fill in as needed
+				return null;
+			default:
+				assert(false);
+				return null;
 		}
 	}
+
+	// WARNING: You are not allowed to change any part of the interface.
+	// That means you cannot add any method nor modify any of these methods.
 	
-	// Return the string describing all the items in the inventory
-	public String getInventoryString() {
-		if (Config.getBuggyPlayer()) {
-			throw new UnsupportedOperationException("Injected bug for Player class");
-		}
-		String str = "";
-		if(hasCoffee) {
-			str += "You have a cup of delicious coffee.\n";
-		}
-		else {
-			str += "YOU HAVE NO COFFEE!\n";
-		}
-		if(hasCream) {
-			str += "You have some fresh cream.\n";
-		}
-		else {
-			str += "YOU HAVE NO CREAM!\n";
-		}
-		if(hasSugar) {
-			str += "You have some tasty sugar.\n";
-		}
-		else {
-			str += "YOU HAVE NO SUGAR!\n";
-		}
-		return str;
-	}
+	public void addItem(Item item);
+
+	public boolean hasItem(Item item);
+
+	public String getInventoryString();
 }

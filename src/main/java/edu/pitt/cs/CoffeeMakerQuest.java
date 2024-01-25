@@ -2,13 +2,23 @@ package edu.pitt.cs;
 
 import java.util.ArrayList;
 
+import org.mockito.Mockito;
+
 public interface CoffeeMakerQuest {
-	public static CoffeeMakerQuest createInstance(Player player, ArrayList<Room> rooms) {
-		if(Config.getBuggyCoffeeMakerQuest()) {
-			return new CoffeeMakerQuestBuggy(player, rooms);
-		}
-		else {
-			return new CoffeeMakerQuestImpl(player, rooms);
+	public static CoffeeMakerQuest createInstance(InstanceType type, Player player, ArrayList<Room> rooms) {
+		switch (type) {
+			case IMPL:
+				return new CoffeeMakerQuestImpl(player, rooms);
+			case BUGGY:
+				return new CoffeeMakerQuestBuggy(player, rooms);
+			case SOLUTION:
+				return new CoffeeMakerQuestSolution(player, rooms);
+			case MOCK:
+				// TODO: Fill in as needed
+				return null;
+			default:
+				assert (false);
+				return null;
 		}
 	}
 	

@@ -21,7 +21,7 @@ class RoomsJSONParser {
     ArrayList<Room> loadFromFile(String filePath) throws FileNotFoundException {
         FileReader reader = new FileReader(filePath);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        ArrayList<Room> rooms = gson.fromJson(reader, new TypeToken<ArrayList<Room>>(){}.getType());
+        ArrayList<Room> rooms = gson.fromJson(reader, new TypeToken<ArrayList<RoomImpl>>(){}.getType());
         return rooms;
     }
 }
