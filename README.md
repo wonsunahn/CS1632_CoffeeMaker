@@ -19,9 +19,9 @@
 # CS 1632 - Software Quality Assurance
 Fall Semester 2024
 
-* DUE: September 23 (Monday), 2024 before start of class
+* DUE: September 30 (Monday), 2024 before start of class
 
-**GitHub Classroom Link:** TBD
+**GitHub Classroom Link:** https://classroom.github.com/a/jdT8mvP1
 
 ## Description
 
