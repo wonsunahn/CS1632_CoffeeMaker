@@ -17,11 +17,11 @@
 - [Resources](#resources)
 
 # CS 1632 - Software Quality Assurance
-Spring Semester 2024
+Fall Semester 2024
 
-* DUE: February 13, 2024 before start of class
+* DUE: September 30 (Monday), 2024 before start of class
 
-**GitHub Classroom Link:** https://classroom.github.com/a/UEy8eUyF
+**GitHub Classroom Link:** https://classroom.github.com/a/jdT8mvP1
 
 ## Description
 
@@ -212,7 +212,6 @@ screenshots of the 4 classes in the following order:
 1. CoffeeMakerQuestImpl.java
 2. PlayerImpl.java
 3. RoomImpl.java
-4. Game.java
 
 ## Additional Requirements
 
@@ -353,9 +352,21 @@ your code, and retry.
 
 # Groupwork Plan
 
-Just like for Exercise 2, I recommend that you divide the list of methods to
-implement / test into two halves and working on one half each.  Please document
-how you divided the work in your report.
+Please divide the list of methods to implement / test into two halves and
+working on one half each.  Make sure each member does both implementation and
+testing.  One logical way to divide the work is to have one member be in charge
+of implementing and testing Room, and the other member be in charge of Player,
+and then have both work together on the rest.  Please document how you divided
+the work in your report.
+
+To avoid merge conflicts on GitHub while working on the same file, I suggest
+that you use the Live Share feature in VSCode to work on the same shared copy
+of code, when you are working concurrently in real time (as in the classroom).
+After you are done with the coding session, don't forget to commit and push the
+code to the GitHub repository so that both partners have access to it later.
+Pull and push frequently from the repository whenever starting and finishing
+working on a method to sync changes.  Please communicate frequently and help
+each other out!
 
 # Resources
 
