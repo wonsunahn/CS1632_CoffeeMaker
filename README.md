@@ -17,11 +17,11 @@
 - [Resources](#resources)
 
 # CS 1632 - Software Quality Assurance
-Fall Semester 2024
+Spring Semester 2025
 
-* DUE: September 30 (Monday), 2024 before start of class
+* DUE: February 18 (Tuesday), 2025 before start of class
 
-**GitHub Classroom Link:** https://classroom.github.com/a/jdT8mvP1
+**GitHub Classroom Link:** TBD
 
 ## Description
 
@@ -373,12 +373,10 @@ each other out!
 These links are the same ones posted at the end of the slides:
 
 * JUnit User manual:  
-https://junit.org/junit5/docs/current/user-guide/  
-The Writing Tests section is probably the most useful.
+https://github.com/junit-team/junit4/wiki
 
 * JUnit Reference Javadoc:  
-http://junit.sourceforge.net/javadoc/  
-For looking up methods only, not a user guide.
+https://junit.org/junit4/javadoc/latest/
 
 * Mockito User Manual:  
 https://javadoc.io/static/org.mockito/mockito-core/3.2.4/org/mockito/Mockito.html  
